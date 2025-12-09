@@ -49,10 +49,8 @@ module.exports.loginUser = async (req, res) => {
     }
 
     return res.status(200).send({
-      access: auth.createAccessToken({
-        message: "User logged in successfully",
-        user,
-      }),
+      message: "User logged in successfully",
+      access: auth.createAccessToken(user),
     });
   } catch (error) {
     return errorHandler(error, req, res);
