@@ -29,6 +29,10 @@ const movieSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  imageUrl: {
+    type: String,
+    required: true,
+  },
   comments: {
     type: [commentSchema],
     default: [],
