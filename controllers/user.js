@@ -8,8 +8,6 @@ module.exports.registerUser = async (req, res) => {
   try {
     if (!req.body.email.includes("@")) {
       return res.status(400).send({ message: "Email invalid" });
-    } else if (req.body.mobileNo.length !== 11) {
-      return res.status(400).send({ message: "mobile number invalid" });
     } else if (req.body.password < 8) {
       return res
         .status(400)
@@ -17,11 +15,8 @@ module.exports.registerUser = async (req, res) => {
     }
 
     const newUser = new User({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
       email: req.body.email,
       password: bcrypt.hashSync(req.body.password, 10),
-      mobileNo: req.body.mobileNo,
     });
 
     await newUser.save();
